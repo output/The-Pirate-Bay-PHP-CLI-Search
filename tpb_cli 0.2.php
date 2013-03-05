@@ -12,7 +12,7 @@
  *
  */
 
-echo "\nTPB_CLI v0.2 GFY Public License (c) 2012 Phibe Optik 2013-11-01\n";
+echo "\nTPB_CLI v0.2 GFY Public License (c) 2012 Phibe Optik @ Mohd Shahril 2013-11-01\n";
 
 $open = new thepiratebay;
 
