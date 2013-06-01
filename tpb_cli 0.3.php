@@ -1,7 +1,10 @@
 <?php
 
 /*
- * The Pirate Bay PHP CLI Search v0.2
+ * The Pirate Bay PHP CLI Search v0.3
+ *
+ * 0.3 (2013-01-06)
+ * - Recently, TPB change this domain name into .sx (sux maybe ? :D), so I updated this PHP to work with their new domain name.
  * 
  * 0.2 (2013-11-01)
  * - Support multiple search pages.
@@ -12,7 +15,7 @@
  *
  */
 
-echo "\nTPB_CLI v0.2 GFY Public License (c) 2012 Phibe Optik @ Mohd Shahril 2013-11-01\n";
+echo "\nTPB_CLI v0.3 GFY Public License (c) 2013 Phibe Optik @ Mohd Shahril 2013-01-06\n";
 
 $open = new thepiratebay;
 
@@ -62,7 +65,7 @@ class thepiratebay{
 	
 	public function search($string){ //data will return in array [ID/FILENAME]
 		$search = str_replace(" ", "%20", $string);
-		$dataget = $this->getdata("http://thepiratebay.se/search/".$search."/0/99/0", "", "");
+		$dataget = $this->getdata("http://thepiratebay.sx/search/".$search."/0/99/0", "", "");
 		if(strpos($dataget, "No hits")){ 
 			return false; 
 		}elseif(strpos($dataget, '>2<')){
@@ -75,7 +78,7 @@ class thepiratebay{
 			$caripage = array_splice($caripage, 1);
 				
 			for($i = 0;$i < count($caripage);$i++){
-				$loopget = $this->getdata("http://thepiratebay.se/search/".$search."/".$i."/99/0/", "", "");
+				$loopget = $this->getdata("http://thepiratebay.sx/search/".$search."/".$i."/99/0/", "", "");
 				$data_pecah = explode('<a href="/torrent/', $loopget);
 					
 				// Find ID and FileName
@@ -99,7 +102,7 @@ class thepiratebay{
 	}
 	
 	public function getsource($id){
-		return $this->getdata("http://thepiratebay.se/torrent/".$id."/", "", "");
+		return $this->getdata("http://thepiratebay.sx/torrent/".$id."/", "", "");
 	}
 	
 	// Find Seeders/Leechers 
@@ -124,7 +127,7 @@ class thepiratebay{
 	
 	// Get magnet link
 	public function getmagnet($id){
-		$data = $this->getdata("http://thepiratebay.se/torrent/".$id."/", "", "");
+		$data = $this->getdata("http://thepiratebay.sx/torrent/".$id."/", "", "");
 		$dataget = explode('xt=urn', $data);
 		$dataget = explode('" title=', $dataget[1]);
 		return "xt=urn".$dataget[0];
